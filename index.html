@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🇮🇹 רוד טריפ איטליה 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',-apple-system,Arial,sans-serif;background:#f4f2ed;color:#2d2d2d;direction:rtl;font-size:14px;padding-bottom:30px}
+.hdr{background:linear-gradient(135deg,#c0392b 0%,#96281b 100%);color:#fff;padding:16px 20px}
+.hdr h1{font-size:18px;font-weight:700;margin-bottom:4px}
+.hdr .sub{font-size:12px;opacity:.85}
+.toolbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:10px 14px;background:#fff;border-bottom:1px solid #e0e0e0}
+.toolbar button{padding:6px 12px;border:1px solid #ddd;border-radius:20px;cursor:pointer;font-size:12px;background:#f8f8f8;color:#555;font-family:inherit}
+.toolbar button.on{background:#c0392b;color:#fff;border-color:#c0392b;font-weight:600}
+.toolbar button.save{background:#2e7d32;color:#fff;border-color:#2e7d32}
+.savemsg{font-size:12px;color:#2e7d32;font-weight:600}
+.notice{background:#fff3cd;border-right:4px solid #e6a817;padding:10px 16px;font-size:13px;color:#7d5a00}
+.filters{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;background:#fff;border-bottom:1px solid #e0e0e0;position:sticky;top:0;z-index:20;box-shadow:0 2px 4px rgba(0,0,0,.07)}
+.filters button{padding:6px 12px;border:1px solid #ddd;border-radius:20px;cursor:pointer;font-size:12px;background:#f8f8f8;color:#555;font-family:inherit;white-space:nowrap}
+.filters button.on{background:#c0392b;border-color:#c0392b;color:#fff;font-weight:600}
+.zone-ttl{padding:8px 16px;font-size:11px;font-weight:700;color:#c0392b;letter-spacing:.5px;background:#f9f3f3;border-bottom:1px solid #f0e0e0;border-top:2px solid #c0392b;margin-top:4px}
+.day{border-bottom:1px solid #e0e0e0;background:#fff;margin-bottom:2px}
+.day-hdr{display:flex;align-items:flex-start;padding:12px 16px;cursor:pointer;gap:10px;border-right:3px solid transparent}
+.day-hdr:hover{background:#fdf5f5;border-right-color:#c0392b}
+.day-num{background:#c0392b;color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px}
+.day-info{flex:1}
+.day-ttl{font-weight:700;font-size:14px;line-height:1.3;color:#1a1a1a}
+.day-meta{font-size:11px;color:#888;margin-top:3px}
+.day-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.dtag{font-size:10px;padding:2px 7px;border-radius:10px;background:#f0f0f0;color:#666}
+.day-date{font-size:12px;color:#c0392b;font-weight:700;white-space:nowrap;margin-right:6px;margin-top:2px}
+.arr{font-size:14px;color:#bbb;flex-shrink:0;margin-top:6px;transition:transform .2s}
+.arr.op{transform:rotate(180deg)}
+.body{display:none;border-top:1px solid #f0f0f0}
+.body.op{display:block}
+.map-wrap{background:#eef6fb;border-bottom:1px solid #d0e8f0}
+.map-hdr{padding:8px 14px;font-size:12px;color:#1565c0;font-weight:600;border-bottom:1px solid #d0e8f0}
+.map-pins{padding:10px 14px;display:flex;flex-direction:column;gap:6px}
+.pin-item{display:flex;align-items:flex-start;gap:8px;padding:6px 10px;background:#fff;border-radius:6px;border:1px solid #e0e8f0}
+.pin-icon{font-size:18px;flex-shrink:0}
+.pin-name{font-size:12px;font-weight:700}
+.pin-link{display:inline-block;margin-top:3px;font-size:11px;color:#1565c0;text-decoration:none;padding:2px 7px;background:#e8f4f8;border-radius:10px}
+.map-btn{display:block;margin:8px 14px 10px;padding:8px 14px;background:#1565c0;color:#fff;border:none;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;width:calc(100% - 28px);font-weight:600;text-align:center;text-decoration:none}
+.rows-wrap{padding:4px 0 8px}
+.row{display:grid;grid-template-columns:62px 32px 1fr;gap:0 8px;padding:8px 14px;border-bottom:1px dotted #f0f0f0;align-items:start}
+.row.nx{border-right:3px solid #e67e22}
+.rt{font-size:11px;color:#999;padding-top:3px;text-align:center;line-height:1.4}
+.ri{font-size:21px;text-align:center;line-height:1.2}
+.rn{font-size:13px;font-weight:700;line-height:1.4}
+.rd{font-size:12px;color:#555;margin-top:3px;line-height:1.6}
+.re{font-size:11px;color:#555;margin-top:4px;line-height:1.6;padding:5px 9px;background:#f8f8f5;border-radius:4px;border-right:2px solid #ccc}
+.bx{display:inline-block;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:700;margin-right:4px;vertical-align:middle}
+.bf{background:#e8f5e9;color:#2e7d32}.bt{background:#e3f2fd;color:#1565c0}.bp{background:#f3e5f5;color:#6a1b9a}.bn{background:#fff8e1;color:#c0392b}
+.hotel-row{background:#fef9e7;border-radius:6px;padding:8px 12px;margin:6px 14px 10px;font-size:12px;color:#7d5a00;border:1px solid #fce4a1}
+.secret-box{background:#fff8e1;border-right:3px solid #e67e22;padding:9px 12px;margin:8px 14px 4px;font-size:12px;color:#7d3c00;line-height:1.6;border-radius:0 6px 6px 0}
+.secret-box strong{display:block;color:#c0392b;font-size:12px;font-weight:700;margin-bottom:3px}
+.tips-sec{padding:12px 16px}
+.tips-cat{margin-bottom:16px}
+.tips-cat h4{font-size:13px;font-weight:700;color:#c0392b;margin-bottom:7px;padding-bottom:4px;border-bottom:1px solid #f0e0e0}
+.tips-cat li{font-size:12px;color:#444;margin-bottom:5px;line-height:1.6;list-style:none;padding-right:14px;position:relative}
+.tips-cat li:before{content:'•';position:absolute;right:0;color:#c0392b}
+.tips-cat li.warn{color:#c0392b;font-weight:600}
+[contenteditable=true]{background:#fffde7;outline:1px dashed #e6a817;border-radius:3px;padding:1px 4px;cursor:text}
+.edit-controls{display:none;padding:4px 14px}
+.edit-on .edit-controls{display:block}
+.del-row{font-size:11px;color:#c0392b;background:#fdf0ed;border:1px solid #f5c6bb;border-radius:4px;padding:2px 8px;cursor:pointer;margin:2px}
+.add-row{font-size:12px;color:#2e7d32;background:#eaf5ea;border:1px solid #b8dcb8;border-radius:6px;padding:6px 12px;cursor:pointer;margin:4px 14px;font-weight:600}
+@media print{
+  .no-print{display:none!important}
+  .body{display:block!important}
+  .day-hdr{cursor:default}
+  body{padding:0;background:#fff}
+  .day{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>🏛 רוד טריפ קמפניה & רומא – 12 ימים</h1>
+  <div class="sub">24/06 – 05/07/2026 · 2 זוגות · נאפולי · קפרי · אמלפי · פוזיטנו · סורנטו · פסטום · רומא</div>
+</div>
+
+<div class="toolbar no-print">
+  <button id="editBtn" onclick="toggleEdit()">✏️ ערוך תוכנית</button>
+  <button class="save" onclick="saveData()">💾 שמור</button>
+  <button onclick="window.print()">🖨 הדפס / PDF</button>
+  <button onclick="resetData()">↺ איפוס</button>
+  <span class="savemsg" id="savemsg"></span>
+</div>
+
+<div class="notice">🏨 <strong>נאפולי (ימים 1–3):</strong> Caruso Place – Via Toledo 256 | 💡 לחץ על יום כדי לפתוח · במצב עריכה לחץ על טקסט כדי לשנות</div>
+
+<div class="filters no-print" id="fbar">
+  <button class="on" onclick="go('all',this)">🗺 הכל</button>
+  <button onclick="go('napoli',this)">🏙 נאפולי</button>
+  <button onclick="go('capri',this)">🏝 קפרי</button>
+  <button onclick="go('amalfi',this)">🌊 אמלפי</button>
+  <button onclick="go('cilento',this)">🌿 צ'ילנטו</button>
+  <button onclick="go('roma',this)">🏛 רומא</button>
+  <button onclick="go('tips',this)">💡 טיפים</button>
+</div>
+
+<div id="content"></div>
+
+<script>
+var DEFAULT_DAYS=[
+{z:'napoli',n:1,d:'24/06 ג׳',ttl:'הגעה לנאפולי – Via Toledo & Spaccanapoli',sub:'נחיתה ~17:00 | לינה: Caruso Place',tags:['עיר','קולינריה','אדריכלות'],
+secret:'Palazzo Zevallos Stigliano (Via Toledo 185) – גלריה חינמית בארמון בארוקי. ציור של קרווג\'ו. 99% מהתיירים עוברים לידו בלי לדעת.',
+hotel:'Caruso Place Luxury Rooms & Suites, Via Toledo 256',
+pins:[{i:'🏨',n:'Caruso Place',q:'Caruso+Place+Via+Toledo+256+Napoli'},{i:'🍕',n:"da Michele",q:"L'Antica+Pizzeria+da+Michele+Napoli"},{i:'🚶',n:'Spaccanapoli',q:'Spaccanapoli+Napoli'}],
+rows:[
+  {t:'17:00',i:'✈️',n:'נחיתה – Naples Capodichino',d:'מוניות Taxi Napoli (לבן, מד). מחיר קבוע: €23.',e:'אל תיכנסו למוניות לא רשמיות!',b:'t'},
+  {t:'17:45',i:'🏨',n:'Check-in: Caruso Place',d:'Via Toledo 256. בוטיק 4.5⭐. מיזוג חזק.',e:'תחנת מטרו Toledo מתחת – מהיפות בעולם.',b:''},
+  {t:'19:00',i:'🚶',n:'Via Toledo & Quartieri Spagnoli',d:'רחוב הקניות + סמטאות הרובע הספרדי.',e:'',b:''},
+  {t:'20:30',i:'🍕',n:"L'Antica Pizzeria da Michele",d:'Via Cesare Sersale 1/3. מ-1870. Margherita / Marinara בלבד.',e:'הגיעו 20:30+ לתור קצר. תנור 485°C.',b:'f'},
+  {t:'22:00',i:'🌙',n:'Spaccanapoli בלילה',d:'הציר ההיסטורי. בלילה – יותר נשמה.',e:'',b:'t'}
+]},
+{z:'napoli',n:2,d:'25/06 ד׳',ttl:"נאפולי – MANN, Castel dell'Ovo, Capodimonte",sub:'יום עיר מלא | לינה: Caruso Place',tags:['מוזיאון','חוף','גסטרונומיה'],
+secret:'Cimitero delle Fontanelle (Via Fontanelle 80) – מערת קברים עם 40,000 גולגולות. חינם. נאפוליטנים מאמצים גולגולת ומתפללים אליה.',
+hotel:'Caruso Place Luxury Rooms & Suites',
+pins:[{i:'☕',n:'Gran Caffè Gambrinus',q:'Gran+Caffe+Gambrinus+Napoli'},{i:'🏛',n:'MANN',q:'Museo+Archeologico+Nazionale+Napoli'},{i:'🏰',n:"Castel dell'Ovo",q:"Castel+dell'Ovo+Napoli"},{i:'💀',n:'Fontanelle',q:'Cimitero+delle+Fontanelle+Napoli'}],
+rows:[
+  {t:'08:30',i:'☕',n:'Gran Caffè Gambrinus',d:'Via Chiaia 1/2. מ-1860. Sfogliatella + Babà.',e:'עמדו בבר כמו מקומיים = חצי מחיר.',b:'f'},
+  {t:'09:30',i:'🏛',n:'Museo Archeologico Nazionale',d:'פסיפס "קרב איסוס", Gabinetto Segreto.',e:'2.5-3 שעות. €15. coopculture.it',b:'p'},
+  {t:'12:30',i:'🍳',n:'פיצה מטוגנת – Friggitoria Fiorenzano',d:'Piazza Montesanto 23. Pizza fritta €2-3.',e:'',b:'f'},
+  {t:'14:00',i:'🏰',n:"Castel dell'Ovo",d:'Via Eldorado 3. כניסה חינם! נוף לווזוב וקפרי.',e:'Borgo Marinari = דייגים ומסעדות ים.',b:''},
+  {t:'20:30',i:'🍷',n:'Ristorante Palazzo Petrucci',d:'תחת קמרונות מהמאה ה-14. Candele al ragù.',e:'',b:'f'}
+]},
+{z:'napoli',n:3,d:'26/06 ה׳',ttl:'נאפולי + סדנת בישול נאפוליטנית 👨‍🍳',sub:'יום עיר + סדנה 18:00–21:00 | נסיעה לסורנטו בלילה',tags:['עיר','סדנה','קולינריה'],
+secret:'Cimitero delle Fontanelle – מערת 40,000 גולגולות. בואו לפני הצהריים לשקט.',
+hotel:'Hotel Antiche Mura Sorrento | ⚠️ הודיעו על late check-in (22:00)',
+pins:[{i:'🏰',n:"Castel dell'Ovo",q:"Castel+dell'Ovo+Napoli"},{i:'💀',n:'Fontanelle',q:'Cimitero+delle+Fontanelle+Napoli'},{i:'👨‍🍳',n:'סדנת בישול',q:'Viale+Farnese+36+Napoli'}],
+rows:[
+  {t:'09:00',i:'🏰',n:"Castel dell'Ovo & Borgo Marinari",d:'הטירה העתיקה – חינם. נוף לווזוב וקפרי.',e:'אגדה: וירגיליוס הטמין ביצה קסומה.',b:''},
+  {t:'11:00',i:'💀',n:'Cimitero delle Fontanelle (נסתר!)',d:'Via Fontanelle 80. 40,000 גולגולות. חינם.',e:'תרבות "anime pezzentelle".',b:'',x:true},
+  {t:'13:00',i:'🍝',n:'Trattoria San Ferdinando',d:'פסטה al ragù אמיתית. מקומי.',e:'אכלו קל – הערב סדנה!',b:'f'},
+  {t:'15:00',i:'🌅',n:'Posillipo – שכונת היוקרה',d:'Via Marechiaro. שקט מעל הים. קפה + נוף.',e:'',b:'t'},
+  {t:'16:30',i:'🚗',n:'איסוף רכב – Piazza Garibaldi',d:'Hertz/Europcar. Fiat 500 מומלץ.',e:'צלמו שריטות! GPS חיוני.',b:'t'},
+  {t:'18:00',i:'👨‍🍳',n:'סדנת בישול נאפוליטנית 🎉',d:'Viale Farnese 36, 80131 Napoli. 3 שעות. ~21:00.',e:'מה שתבשלו תאכלו! בואו עם תיאבון.',b:'f',x:true},
+  {t:'21:15',i:'🚗',n:'נסיעה לסורנטו (35 דקות)',d:'דרך A3 + SS145. ברור בלילה.',e:'הגיעו ~22:00. late check-in!',b:'t'}
+]},
+{z:'capri',n:4,d:'27/06 ו׳',ttl:'קפרי – Grotta Azzurra, Anacapri, Villa Jovis & Arco Naturale',sub:'מסורנטו לקפרי (25 דקות!) | יום מלא ורגוע',tags:['אי','מערה','הליכה','תצפית'],
+secret:'Arco Naturale – קשת סלע טבעית ענקית. הליכה 20 דקות מ-Piazzetta. כמעט אף תייר. נוף אינסופי.',
+hotel:'Hotel Antiche Mura Sorrento (לילה 2)',
+pins:[{i:'⛴',n:'נמל סורנטו',q:'Sorrento+ferry+port'},{i:'🌊',n:'Grotta Azzurra',q:'Grotta+Azzurra+Capri'},{i:'🏡',n:'Villa San Michele',q:'Villa+San+Michele+Anacapri'},{i:'🏔',n:'Villa Jovis',q:'Villa+Jovis+Capri'},{i:'🏺',n:'Arco Naturale',q:'Arco+Naturale+Capri'}],
+rows:[
+  {t:'07:30',i:'⛴',n:'מעבורת מסורנטו לקפרי',d:'Molo Clavel → קפרי = 25 דקות! €20.',e:'הכי קרוב לקפרי. הגיעו 15 דקות מוקדם.',b:'t'},
+  {t:'09:00',i:'🌊',n:'Grotta Azzurra',d:'barquette €15+€7. אור כחול ייחודי.',e:'הגיעו לפני 10:00. גלים = סגור.',b:'p',x:true},
+  {t:'11:00',i:'🚡',n:'פוניקולר + La Piazzetta',d:'"הסלון הקטן של העולם". קפה.',e:'',b:''},
+  {t:'12:00',i:'🌺',n:'Anacapri & Villa San Michele',d:'אוטובוס €2. נוף 360°. €9.',e:'ספרו "The Story of San Michele".',b:'',x:true},
+  {t:'13:30',i:'🍽',n:'Da Gelsomina',d:'Via Migliara 72. Ragu di coniglio + נוף.',e:'',b:'f'},
+  {t:'15:00',i:'🏔',n:'Villa Jovis – ארמון טיבריוס',d:'הליכה 45 דקות. נוף לכל חוף האמלפי.',e:'מ-Salto di Tiberio הקיסר השליך אויבים.',b:'p'},
+  {t:'17:00',i:'🏺',n:'Arco Naturale (נסתר!)',d:'הליכה 20 דקות. קשת סלע טבעית.',e:'',b:'',x:true},
+  {t:'18:30',i:'⛴',n:'מעבורת חזרה לסורנטו',d:'~18:30 מ-Marina Grande. 25 דקות.',e:'בדקו שעות: caremar.it',b:'t'},
+  {t:'20:00',i:'🍷',n:'ארוחת ערב בסורנטו',d:'Il Buco (מישלן ⭐) או Caruso.',e:'',b:'f'}
+]},
+{z:'amalfi',n:5,d:'28/06 ש׳',ttl:'סורנטו → ראוולו → אמלפי → פראיינו',sub:'SS163 – כביש הנשימות הקצרות',tags:['נוף','גנים','גסטרונומיה','רומנטי'],
+secret:'Villino Ida (Ravello) – תצפית פרטית של משפחה מקומית. €3. לא בשום מדריך. מציאה.',
+hotel:'Casa Angelina Praiano – Via G. Capriglione 147 (4.7⭐)',
+pins:[{i:'🍋',n:'Bar Ercolano',q:'Bar+Ercolano+Sorrento'},{i:'🌺',n:'Villa Cimbrone',q:'Villa+Cimbrone+Ravello'},{i:'🎵',n:'Villa Rufolo',q:'Villa+Rufolo+Ravello'},{i:'⚓',n:'Duomo Amalfi',q:'Duomo+Amalfi'}],
+rows:[
+  {t:'08:00',i:'🍋',n:'בוקר סורנטו + Limoncello',d:'Granita di limone ב-Bar Ercolano. לימון IGP.',e:'',b:'f'},
+  {t:'09:30',i:'🚗',n:'נסיעה לראוולו דרך SS163',d:'40 דקות. אחד מ-10 הכבישים היפים בעולם.',e:'עצרו רק בתחנות עם חניה.',b:'t'},
+  {t:'10:30',i:'🌺',n:"Villa Cimbrone – Terrazza dell'Infinito",d:'גנים מהמאה ה-11. נוף אינסופי. Greta Garbo שהתה.',e:'הגיעו 10:30 לפני קבוצות. €7.',b:'p',x:true},
+  {t:'13:00',i:'🍝',n:'Ristorante Salvatore Ravello',d:'מ-1950. נוף פנורמי. Scialatielli.',e:'',b:'f'},
+  {t:'15:00',i:'🎵',n:'Villa Rufolo & Ravello Festival',d:'ואגנר מצא כאן השראה. ravellofestival.com',e:'קונצרט ערב = בלתי נשכח.',b:''},
+  {t:'17:00',i:'⚓',n:"Duomo di Sant'Andrea – אמלפי",d:'מהמאה ה-9. חזית ערבית-נורמנדית.',e:'Il Papiro: נייר אמלפי ידני.',b:''}
+]},
+{z:'amalfi',n:6,d:'29/06 א׳',ttl:'נתיב האלים + פוזיטנו + Spiaggia Grande',sub:'יציאה 07:00! מסלול הגבעות',tags:['הליכה','חוף','עיר','תצפית'],
+secret:'Spiaggia di Arienzo – חוף נגיש רק בסירה (€5) מ-Positano. מים קריסטל, כמעט אף אחד.',
+hotel:'Casa Angelina Praiano (לילה 2)',
+pins:[{i:'🥾',n:'Bomerano',q:'Bomerano+Agerola+Sentiero+degli+Dei'},{i:'🏘',n:'Nocelle',q:'Nocelle+Positano'},{i:'🍽',n:'La Tagliata',q:'La+Tagliata+Positano'},{i:'🏖',n:'Spiaggia Grande',q:'Spiaggia+Grande+Positano'}],
+rows:[
+  {t:'06:45',i:'🌄',n:'נסיעה ל-Bomerano (30 דקות)',d:'נקודת פתיחה. חנייה ב-Piazza Paolo Capasso.',e:'ציוד: נעלי הליכה, 2 ליטר מים, SPF.',b:'t'},
+  {t:'07:15',i:'🥾',n:'Sentiero degli Dei – נתיב האלים',d:'6 ק"מ, ~3 שעות. נוף לקפרי וווזוב.',e:'אופציה: Valle delle Ferriere – מסלול מפלים קריר.',b:'p',x:true},
+  {t:'10:30',i:'🪜',n:'700 מדרגות לפוזיטנו',d:'Nocelle = כפר 200 תושבים.',e:'',b:''},
+  {t:'12:00',i:'🍽',n:'La Tagliata – all-inclusive',d:'€35/ראש. נוף לפוזיטנו. להזמין!',e:'+39 089 875 964',b:'f'},
+  {t:'14:30',i:'🏖',n:'Spiaggia Grande + Kayak',d:'Ombrellone €25-30. Kayak €15/שעה.',e:'Arienzo (נסתר): €5 בסירה, מים שקופים.',b:'',x:true},
+  {t:'21:00',i:'🍷',n:'Ristorante il Tridente',d:'פרגולה מעל הים. Spaghetti alle vongole.',e:'',b:'f'}
+]},
+{z:'cilento',n:7,d:'30/06 ב׳',ttl:'סלרנו → פסטום → אגרופולי',sub:'יציאה מחוף האמלפי | איטליה האמיתית',tags:['היסטוריה','ארכיאולוגיה','חוף'],
+secret:'Paestum בשקיעה – השמש על המקדשים = תמונות שמחיר אין. אחרי 19:00 שמירה מינימלית.',
+hotel:'Hotel Residence La Colombaia, Agropoli (⭐4.3)',
+pins:[{i:'🛍',n:'Via dei Mercanti',q:'Via+dei+Mercanti+Salerno'},{i:'🏛',n:'Paestum',q:'Paestum+temples'},{i:'⚓',n:'Agropoli',q:'Agropoli+centro+storico'}],
+rows:[
+  {t:'09:00',i:'🚗',n:'נסיעה לסלרנו (45 דקות)',d:'Salerno = עיר אמיתית. Duomo נורמנדי 1076.',e:'שימשה בירת איטליה 1943-44.',b:'t'},
+  {t:'10:00',i:'🛍',n:'Via dei Mercanti + Duomo',d:'שוק מקומי. פחות €50 ויותר מ-Positano.',e:'',b:''},
+  {t:'13:00',i:'🏛',n:'Paestum – 3 מקדשים יוונים',d:'550-460 לפנה"ס. שמורים טוב מאתונה. €12.',e:'מוזיאון: "Tomba del Tuffatore" ייחודי.',b:'p',x:true},
+  {t:'16:30',i:'⚓',n:'אגרופולי – עיירת חוף',d:'מצדה ביזנטית מהמאה ה-6.',e:'',b:'',x:true},
+  {t:'20:00',i:'🐟',n:'Il Ceppo – אגרופולי',d:'Spaghetti alle vongole. €30/ראש.',e:'',b:'f'}
+]},
+{z:'cilento',n:8,d:'01/07 ג׳',ttl:'Castellabate + Trentova + Velia + Pisciotta',sub:'הצ\'ילנטו הנסתר',tags:['כפר נסתר','חוף','ארכיאולוגיה'],
+secret:'Pisciotta – כפר עם 50,000 עצי זיתים בני 1,000 שנה. Frantoio Muto = בית הבד היחיד בקמפניה פתוח לביקור.',
+hotel:'Agriturismo Marulivo, Pisciotta',
+pins:[{i:'🏘',n:'Castellabate',q:'Castellabate+village'},{i:'🏊',n:'Baia di Trentova',q:'Baia+di+Trentova+Agropoli'},{i:'🏛',n:'Velia',q:'Velia+Elea+park'},{i:'🫒',n:'Pisciotta',q:'Pisciotta+Cilento'}],
+rows:[
+  {t:'08:30',i:'🏘',n:'Castellabate – כפר יונסק"ו',d:'כפר גבעה מהמאה ה-12.',e:'צולם כאן "Benvenuti al Sud".',b:'',x:true},
+  {t:'10:00',i:'🏊',n:'Baia di Trentova',d:'Nat Geo: הכי יפה בקמפניה. מים אמרלד.',e:'Snorkeling מדהים. ציוד €10.',b:'p'},
+  {t:'12:30',i:'🍽',n:'Osteria La Pergola',d:'Pasta e patate. €20/ראש.',e:'',b:'f'},
+  {t:'14:30',i:'🏛',n:'Velia – עיר יוונית קדומה',d:'535 לפנה"ס. כאן לימד Parmenides. €5.',e:'כמעט אין תיירים.',b:'',x:true},
+  {t:'17:00',i:'🫒',n:'Pisciotta – עצי זיתים בני 1,000 שנה',d:'Frantoio Muto = בית בד פעיל.',e:'גזעים עקומים כדרקון.',b:'',x:true}
+]},
+{z:'roma',n:9,d:'02/07 ד׳',ttl:'פומפיי → רומא → Trastevere',sub:'נסיעה + עצירה ארכיאולוגית + ערב',tags:['ארכיאולוגיה','רומא','ערב'],
+secret:'Giardino degli Aranci (Aventino) – גן תפוזים עם נוף ישיר לכיפת St. Peter\'s. עשרה אנשים ביום.',
+hotel:"Hotel Campo de'Fiori Boutique / Hotel Artemide",
+pins:[{i:'🌋',n:'Pompei',q:'Pompei+Scavi'},{i:'🏨',n:'Hotel Campo',q:"Hotel+Campo+de'Fiori+Roma"},{i:'🌃',n:'Trastevere',q:'Piazza+Santa+Maria+Trastevere'},{i:'🍝',n:'Da Enzo al 29',q:'Da+Enzo+al+29+Roma'}],
+rows:[
+  {t:'07:30',i:'🌋',n:'נסיעה לפומפיי (2 שעות)',d:'הגיעו לפני 10:00.',e:'הזמינו: pompeiisites.org. €18.',b:'t'},
+  {t:'09:30',i:'🏛',n:'פומפיי – Scavi di Pompei',d:'Forum, Casa dei Vettii, Lupanare, Thermopolium.',e:'Audio Guide €8.',b:'p',x:true},
+  {t:'13:00',i:'🚗',n:'נסיעה לרומא (3 שעות – A1)',d:'עצירת Autogrill.',e:'ZTL: חנו מחוץ למרכז! Villa Borghese €2/שעה.',b:'t'},
+  {t:'17:00',i:'🏨',n:'הגעה + Check-in',d:"Hotel Campo de'Fiori / Artemide.",e:'',b:''},
+  {t:'19:00',i:'🌃',n:'Trastevere – ערב ראשון',d:'פנסי גז, ברים. Basilica מהמאה ה-4.',e:'',b:''},
+  {t:'21:00',i:'🍝',n:'Da Enzo al 29',d:'Cacio e pepe + Coda alla vaccinara. מ-1935.',e:'רזרבציה שבוע מראש! +39 06 581 2260',b:'f'}
+]},
+{z:'roma',n:10,d:'03/07 ה׳',ttl:'קולוסיאום · Forum · Palatino + Gianicolo',sub:'רומא קלאסית + נסתרים + שקיעה',tags:['ארכיאולוגיה','תצפית','גסטרונומיה'],
+secret:'Buco della Serratura (Piazza dei Cavalieri di Malta) – חור מנעול. קו ישר 3 ק"מ לכיפת ווטיקן. 30 שניות, בלתי נשכח.',
+hotel:"Hotel Campo de'Fiori Boutique / Hotel Artemide",
+pins:[{i:'🏛',n:'Colosseum',q:'Colosseum+Rome'},{i:'🥩',n:'Roscioli',q:'Roscioli+Roma'},{i:'⛲',n:'Trevi',q:'Fontana+di+Trevi+Roma'},{i:'🔑',n:'Buco della Serratura',q:'Buco+della+Serratura+Aventino'},{i:'🌅',n:'Gianicolo',q:'Piazzale+Garibaldi+Gianicolo'}],
+rows:[
+  {t:'08:00',i:'🏛',n:'קולוסיאום + Forum + Palatino',d:'€18 משולב. בנוי 70-80 לספירה.',e:'הזמינו שבוע מראש: coopculture.it.',b:'p',x:true},
+  {t:'12:30',i:'🥩',n:'Roscioli',d:'Rigatoni alla gricia + בר גבינות. €35-40.',e:'',b:'f'},
+  {t:'14:30',i:'⛲',n:'Fontana di Trevi + Piazza Navona',d:'14:00-15:00 פחות עמוס. Giolitti gelato.',e:'',b:''},
+  {t:'16:00',i:'🔑',n:'Buco della Serratura (נסתר!)',d:'חור מנעול = קו ישר לכיפה.',e:'10 אנשים ביום. 30 שניות = חוויה.',b:'',x:true},
+  {t:'17:30',i:'🌅',n:'Gianicolo – Piazzale Garibaldi',d:'פנורמה 180°. שקיעה זהב. תותח ב-12:00.',e:'הרומאים באים לפיקניק. לא ב-Rick Steves.',b:'t',x:true},
+  {t:'20:00',i:'🍷',n:"Osteria dell'Angelo",d:'Menù fisso €25. Abbacchio alla romana.',e:'',b:'f'}
+]},
+{z:'roma',n:11,d:'04/07 ו׳',ttl:"ווטיקן + Campo de'Fiori + Giardino degli Aranci",sub:'יום ווטיקן + שוק + נסתרים',tags:['ווטיקן','שוק','נסתר','קניות'],
+secret:'Palazzo Doria Pamphilj (Via del Corso 305) – גלריה פרטית בארמון חי! Velázquez, Caravaggio, Raphael – ללא תורים.',
+hotel:"Hotel Campo de'Fiori Boutique / Hotel Artemide",
+pins:[{i:'🥦',n:'Campo de\'Fiori',q:"Campo+de'Fiori+market+Roma"},{i:'🎨',n:'Vatican',q:'Vatican+Museums'},{i:'🍕',n:'Pizzarium Bonci',q:'Pizzarium+Bonci+Rome'},{i:'🌳',n:'Giardino Aranci',q:'Giardino+degli+Aranci+Roma'},{i:'🖼',n:'Doria Pamphilj',q:'Palazzo+Doria+Pamphilj+Roma'}],
+rows:[
+  {t:'07:30',i:'🥦',n:"Campo de'Fiori – שוק",d:'07:00-14:00. תותים, גבינות. Supplì €3.',e:'',b:'f'},
+  {t:'09:00',i:'🎨',n:'מוזיאוני הווטיקן + סיסטינית',d:'54 גלריות. Raphael Rooms + Sistine.',e:'הזמינו 2-3 שבועות מראש! €20.',b:'p',x:true},
+  {t:'13:00',i:'🍕',n:'Pizzarium Bonci',d:'Pizza al taglio. mortadella e pistacchio.',e:'€4-5/פרוסה. שווה.',b:'f'},
+  {t:'15:30',i:'🌳',n:'Giardino degli Aranci (נסתר!)',d:'עצי תפוז + נוף ל-St. Peter\'s.',e:'ליד Buco della Serratura.',b:'',x:true},
+  {t:'17:00',i:'🖼',n:'Palazzo Doria Pamphilj (נסתר!)',d:'גלריה פרטית בארמון חי! €16.',e:'המשפחה עדיין גרה שם.',b:'',x:true},
+  {t:'20:30',i:'🌙',n:'La Pergola / Il Sorpasso',d:'La Pergola: מישלן €200. Il Sorpasso: €30.',e:'',b:'f'}
+]},
+{z:'roma',n:12,d:'05/07 ש׳',ttl:'בוקר חופשי → Pantheon → טיסה',sub:'הפרידה מאיטליה',tags:['בוקר','קפה','טיסה'],
+secret:'',hotel:'',
+pins:[{i:'☕',n:"Sant'Eustachio",q:"Caffe+Sant'Eustachio+Roma"},{i:'🏛',n:'Pantheon',q:'Pantheon+Rome'},{i:'✈️',n:'FCO',q:'Fiumicino+Airport'}],
+rows:[
+  {t:'08:00',i:'☕',n:"Caffè Sant'Eustachio",d:'מ-1938. Gran Caffè Special. הכי טוב בעיר.',e:'',b:'f'},
+  {t:'09:30',i:'🏛',n:'Pantheon',d:'בנוי 125 לספירה. כיפה 43 מ\'. €5.',e:'אור מהאוקולוס בבוקר = תמונה.',b:''},
+  {t:'11:00',i:'🚗',n:'החזרת רכב שכור',d:'מלאו דלק! Hertz/Europcar ב-FCO.',e:'בדקו: שריטות, דלק, GPS.',b:'t'},
+  {t:'12:30',i:'✈️',n:'FCO – טיסה הביתה',d:'Leonardo Express: 32 דקות €14.',e:'Ciao Italia! Arrivederci!',b:''}
+]}
+];
+
+var tips=[
+  {cat:'🚗 נסיעה, רכב & ZTL',items:[
+    {t:'ZTL: רומא, נאפולי, אמלפי = קנס €150-250. GPS חיוני!',w:true},
+    {t:'SS163: עמוס 09:00-17:00. צאו לפני 09:00 או אחרי 17:00.'},
+    {t:'קפרי: אסור רכב! חנו בסורנטו ועלו במעבורת.'},
+    {t:'חניה רומא: Villa Borghese = €2/שעה.'}
+  ]},
+  {cat:'🎟 הזמינו מראש',items:[
+    {t:'קולוסיאום: coopculture.it – שבוע מראש!',w:true},
+    {t:'ווטיקן: museivaticani.va – 2-3 שבועות מראש!',w:true},
+    {t:'פומפיי: pompeiisites.org.'},
+    {t:'Da Enzo al 29: +39 06 581 2260 – שבוע מראש!'}
+  ]},
+  {cat:'🍽 אוכל',items:[
+    {t:'חובה: Pizza Napoletana, Sfogliatella, Cacio e pepe, Coda alla vaccinara, Supplì.'},
+    {t:'הימנעו: תפריט ב-10 שפות + תמונות = מלכודת תיירים.',w:true},
+    {t:'Aperitivo (18-20): משקה + חטיפים חינם.'},
+    {t:'ג\'לטו: "artigianale" + גלידייר מכוסה.'}
+  ]},
+  {cat:'💰 תקציב',items:[
+    {t:'מזרקות Nasoni ברומא: מים חינם.'},
+    {t:'Trenitalia: 2 שבועות מראש = חסכון 50%.'},
+    {t:'Pranzo זול 50% מ-Cena.'}
+  ]},
+  {cat:'🌡 קיץ',items:[
+    {t:'חום: 32-38°C. פעילות עצימה רק 07:00-11:00 ו-17:00-20:00.',w:true},
+    {t:'נתיב האלים: צאו לפני 09:00. 2 ליטר מים/אדם.'},
+    {t:'SPF 50: UV 10-11. כנסיות: כיסוי כתפיים וברכיים.'}
+  ]}
+];
+
+var ZONES={all:['napoli','capri','amalfi','cilento','roma'],napoli:['napoli'],capri:['capri'],amalfi:['amalfi'],cilento:['cilento'],roma:['roma']};
+var ZNAMES={napoli:'🏙 נאפולי',capri:'🏝 קפרי',amalfi:'🌊 חוף אמלפי',cilento:'🌿 צ\'ילנטו ופסטום',roma:'🏛 רומא'};
+
+var days=load();
+var curFilter='all';
+var editMode=false;
+var openDays={1:true};
+
+function load(){
+  try{var s=localStorage.getItem('italy_trip_v2');if(s)return JSON.parse(s);}catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULT_DAYS));
+}
+function saveData(){
+  try{
+    collectEdits();
+    localStorage.setItem('italy_trip_v2',JSON.stringify(days));
+    showSave('נשמר ✓');
+  }catch(e){showSave('שגיאה');}
+}
+function showSave(msg){
+  var el=document.getElementById('savemsg');el.textContent=msg;
+  setTimeout(function(){el.textContent='';},1500);
+}
+function resetData(){
+  if(confirm('לאפס לתוכנית המקורית? כל השינויים יימחקו.')){
+    days=JSON.parse(JSON.stringify(DEFAULT_DAYS));
+    localStorage.removeItem('italy_trip_v2');
+    render(curFilter);
+  }
+}
+function toggleEdit(){
+  if(editMode)collectEdits();
+  editMode=!editMode;
+  document.getElementById('editBtn').classList.toggle('on',editMode);
+  document.getElementById('editBtn').textContent=editMode?'✓ סיים עריכה':'✏️ ערוך תוכנית';
+  document.body.classList.toggle('edit-on',editMode);
+  render(curFilter);
+}
+function collectEdits(){
+  // Read all contenteditable fields back into data
+  document.querySelectorAll('[data-edit]').forEach(function(el){
+    var path=el.getAttribute('data-edit').split('|');
+    var dn=parseInt(path[0]),field=path[1],ri=path[2];
+    var day=days.find(function(d){return d.n===dn;});
+    if(!day)return;
+    if(ri===undefined||ri===''){day[field]=el.innerText.trim();}
+    else{day.rows[parseInt(ri)][field]=el.innerText.trim();}
+  });
+}
+function delRow(dn,ri){
+  collectEdits();
+  var day=days.find(function(d){return d.n===dn;});
+  day.rows.splice(ri,1);
+  render(curFilter);
+}
+function addRow(dn){
+  collectEdits();
+  var day=days.find(function(d){return d.n===dn;});
+  day.rows.push({t:'00:00',i:'📍',n:'פעילות חדשה',d:'תיאור',e:'',b:''});
+  render(curFilter);
+}
+function ed(dn,field,ri,val){
+  if(!editMode)return val||'';
+  var attr=dn+'|'+field+'|'+(ri===undefined?'':ri);
+  return '<span contenteditable="true" data-edit="'+attr+'">'+(val||'')+'</span>';
+}
+
+function render(z){
+  curFilter=z;
+  if(z==='tips'){renderTips();return;}
+  var zlist=ZONES[z]||ZONES.all;
+  var h='',prev='';
+  days.forEach(function(day){
+    if(zlist.indexOf(day.z)<0)return;
+    if(day.z!==prev){h+='<div class="zone-ttl">'+ZNAMES[day.z]+'</div>';prev=day.z;}
+    var isOpen=openDays[day.n];
+    var tags=(day.tags||[]).map(function(t){return'<span class="dtag">'+t+'</span>';}).join('');
+    var rows=(day.rows||[]).map(function(r,ri){
+      var bx=r.b==='f'?'<span class="bx bf">🍴 אוכל</span>':r.b==='t'?'<span class="bx bt">💡 טיפ</span>':r.b==='p'?'<span class="bx bp">⭐ חובה</span>':r.x?'<span class="bx bn">✨ נסתר</span>':'';
+      var del=editMode?'<button class="del-row" onclick="delRow('+day.n+','+ri+')">🗑 מחק</button>':'';
+      var extra=(r.e||editMode)?'<div class="re">'+ed(day.n,'e',ri,r.e)+'</div>':'';
+      return'<div class="row'+(r.x?' nx':'')+'"><div class="rt">'+ed(day.n,'t',ri,r.t)+'</div><div class="ri">'+ed(day.n,'i',ri,r.i)+'</div><div><div class="rn">'+ed(day.n,'n',ri,r.n)+bx+'</div><div class="rd">'+ed(day.n,'d',ri,r.d)+'</div>'+extra+del+'</div></div>';
+    }).join('');
+    var addBtn=editMode?'<button class="add-row" onclick="addRow('+day.n+')">＋ הוסף פעילות</button>':'';
+    var hotel=(day.hotel||editMode)?'<div class="hotel-row">🏨 לינה: <strong>'+ed(day.n,'hotel','',day.hotel)+'</strong></div>':'';
+    var secret=(day.secret||editMode)?'<div class="secret-box"><strong>💎 הפינה הנסתרת של ג\'אנלוקה</strong>'+ed(day.n,'secret','',day.secret)+'</div>':'';
+    var mapHtml='';
+    if(day.pins&&day.pins.length&&!editMode){
+      var pinsHtml=day.pins.map(function(p){
+        return'<div class="pin-item"><div class="pin-icon">'+p.i+'</div><div><div class="pin-name">'+p.n+'</div><a class="pin-link" href="https://www.google.com/maps/search/'+encodeURIComponent(p.q)+'" target="_blank">📍 פתח במפה</a></div></div>';
+      }).join('');
+      var dir=day.pins.map(function(p){return encodeURIComponent(p.q);}).join('/');
+      mapHtml='<div class="map-wrap"><div class="map-hdr">📍 נקודות יום '+day.n+'</div><div class="map-pins">'+pinsHtml+'</div><a class="map-btn" href="https://www.google.com/maps/dir/'+dir+'" target="_blank">🗺 פתח מסלול יום '+day.n+' ב-Google Maps ↗</a></div>';
+    }
+    h+='<div class="day"><div class="day-hdr" onclick="toggleDay('+day.n+')"><div class="day-num">'+day.n+'</div><div class="day-info"><div class="day-ttl">'+day.ttl+'</div><div class="day-meta">'+day.sub+'</div><div class="day-tags">'+tags+'</div></div><div class="day-date">'+day.d+'</div><div class="arr'+(isOpen?' op':'')+'">▼</div></div><div class="body'+(isOpen?' op':'')+'">'+secret+mapHtml+'<div class="rows-wrap">'+rows+addBtn+'</div>'+hotel+'</div></div>';
+  });
+  document.getElementById('content').innerHTML=h;
+}
+
+function renderTips(){
+  var h='<div class="zone-ttl" style="margin-top:0">💡 טיפים למסע</div><div class="tips-sec">';
+  tips.forEach(function(cat){
+    h+='<div class="tips-cat"><h4>'+cat.cat+'</h4><ul>';
+    cat.items.forEach(function(it){h+='<li class="'+(it.w?'warn':'')+'">'+it.t+'</li>';});
+    h+='</ul></div>';
+  });
+  h+='</div>';
+  document.getElementById('content').innerHTML=h;
+}
+
+function toggleDay(n){
+  if(editMode)collectEdits();
+  openDays[n]=!openDays[n];
+  render(curFilter);
+}
+function go(z,btn){
+  if(editMode)collectEdits();
+  document.querySelectorAll('#fbar button').forEach(function(t){t.classList.remove('on');});
+  btn.classList.add('on');
+  render(z);
+}
+
+// Auto-save edits on blur
+document.addEventListener('blur',function(e){
+  if(e.target.hasAttribute&&e.target.hasAttribute('data-edit')){
+    collectEdits();
+    try{localStorage.setItem('italy_trip_v2',JSON.stringify(days));}catch(err){}
+  }
+},true);
+
+render('all');
+</script>
+</body>
+</html>
